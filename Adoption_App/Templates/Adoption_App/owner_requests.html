@@ -1,0 +1,190 @@
+{% extends 'Owner_App/ownerbase.html' %}
+{% load static %}
+
+{% block title %}Pending Adoption Requests | PETNEST{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+   
+    <!-- Pending Admin Approval -->
+    <h3 style="font-weight: 700;" class="mt-4 text-warning">Pets Waiting for Admin Approval</h3>
+    
+<table class="table table-striped table-bordered" >
+    <thead>
+        <tr>
+            <th>Pet</th>
+            <th>Category</th>
+            <th>Breed</th>
+            <th>Added On</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for pet in pending_pets %}
+        <tr style="color: orangered;">
+            <td>{{ pet.name }}</td>
+            <td>{{ pet.category.name }}</td>
+            <td>
+                {% if pet.breed %}
+                    {{ pet.breed.name }}
+                {% else %}
+                    N/A
+                {% endif %}
+            </td>
+            <td>{{ pet.created_at|date:"d M Y" }}</td>
+            <td class="text-warning">Waiting for admin</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5" class="text-center">No pets pending admin approval.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+     
+
+<!-- Pending Adoption Requests -->
+ <br><br>
+<h3 style="color: blueviolet;font-weight: 700;">Adoption Requests Waiting for Admin Approval
+    <span class="badge bg-success ms-3" style="background-color:aliceblue blueviolet;font-weight: 700;">{{ pending_requests|length }}</span></h3><br>
+ 
+<table class="table">
+    <thead>
+        <tr>
+            <th>Pet</th>
+            <th>Requested By</th>
+            <th>Status</th>
+            <th>Requested On</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for req in pending_requests %}
+        <tr>
+            <td>{{ req.pet.name }}</td>
+            <td>{{ req.user.username }}</td>
+            <td>{{ req.get_status_display }}</td>
+            <td>{{ req.created_at|date:"d M Y" }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4" class="text-center">No pending adoption requests.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+        </tbody>
+    </table>
+</table>
+
+    <!-- Approved by Admin -->
+    <h3 class="mt-5 d-flex align-items-center text-success">
+        <i class="bi bi-check-circle me-2"></i>
+        Approved by Admin
+        <span class="badge bg-success ms-3">{{ approved_requests|length }}</span>
+    </h3>
+
+    <table class="table table-striped table-hover table-bordered">
+        <thead style="background:#d4edda;">
+            <tr>
+                <th>Pet</th>
+                <th>Requested By</th>
+                <th>Status</th>
+                <th>Requested On</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for req in approved_requests %}
+            <tr>
+                <td>{{ req.pet.name }}</td>
+                <td>{{ req.user.username }}</td>
+                <td>
+                    <span class="badge bg-success">{{ req.get_status_display }}</span>
+                </td>
+                <td>{{ req.created_at|date:"d M Y" }}</td>
+                <td>
+                    <!-- Grant or Reject buttons -->
+                    <a href="{% url 'owner_grant_request' req.id %}" class="btn btn-primary btn-sm">Grant</a>
+                    <a href="{% url 'owner_reject_request' req.id %}" class="btn btn-danger btn-sm">Reject</a>
+                    
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="5" class="text-center">No approved requests yet.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Granted by Owner -->
+    <h3 class="mt-5 d-flex align-items-center text-info">
+        <i class="bi bi-check-square me-2"></i>
+        Granted by Owner
+        <span class="badge bg-info ms-3">{{ granted_requests|length }}</span>
+    </h3>
+
+    <table class="table table-striped table-hover table-bordered">
+        <thead style="background:#cce5ff;">
+            <tr>
+                <th>Pet</th>
+                <th>Requested By</th>
+                <th>Status</th>
+                <th>Requested On</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for req in granted_requests %}
+            <tr>
+                <td>{{ req.pet.name }}</td>
+                <td>{{ req.user.username }}</td>
+                <td>
+                    <span class="badge bg-info">{{ req.get_status_display }}</span>
+                </td>
+                <td>{{ req.created_at|date:"d M Y" }}</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="4" class="text-center">No granted requests yet.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Rejected Requests -->
+    <h3 class="mt-5 d-flex align-items-center text-danger">
+        <i class="bi bi-x-circle me-2"></i>
+        Rejected Requests
+        <span class="badge bg-danger ms-3">{{ rejected_requests|length }}</span>
+    </h3>
+
+    <table class="table table-striped table-hover table-bordered">
+        <thead style="background:#f8d7da;">
+            <tr>
+                <th>Pet</th>
+                <th>Requested By</th>
+                <th>Status</th>
+                <th>Requested On</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for req in rejected_requests %}
+            <tr>
+                <td>{{ req.pet.name }}</td>
+                <td>{{ req.user.username }}</td>
+                <td>
+                    <span class="badge bg-danger">{{ req.get_status_display }}</span>
+                </td>
+                <td>{{ req.created_at|date:"d M Y" }}</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="4" class="text-center">No rejected requests.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

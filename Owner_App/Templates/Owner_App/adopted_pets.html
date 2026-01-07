@@ -1,0 +1,63 @@
+{% extends 'Owner_App/ownerbase.html' %}
+{% block content %}
+
+<div class="container mt-4">
+
+    <!-- PAGE TITLE -->
+    <h2 class="fw-bold mb-4 text-center">
+        🐾 Adopted Pets
+    </h2>
+
+    {% if pets %}
+    <div class="row g-4">
+        {% for pet in pets %}
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+
+                {% if pet.photo %}
+                <img src="{{ pet.photo.url }}" class="card-img-top" style="height:220px; object-fit:cover;">
+                {% endif %}
+
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">{{ pet.name }}</h5>
+
+                    <p class="mb-1">
+                        <strong>Category:</strong> {{ pet.category.name }}
+                    </p>
+
+                    <p class="mb-1">
+                        <strong>Breed:</strong> {{ pet.breed.name }}
+                    </p>
+
+                    <p class="mb-1">
+                        <strong>Age:</strong> {{ pet.age }} years
+                    </p>
+
+                    <span class="badge bg-success mt-2">
+                        Adopted
+                    </span>
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% else %}
+    <!-- EMPTY STATE -->
+    <div class="alert alert-info text-center mt-5">
+        <h5>No adopted pets yet</h5>
+        <p class="mb-0">Once a pet is adopted, it will appear here.</p>
+    </div>
+    {% endif %}
+
+    <!-- BACK BUTTON -->
+    <div class="text-center mt-4">
+        <a href="{% url 'owner_dashboard' %}" class="btn btn-secondary">
+            ← Back to Dashboard
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends 'Admin_App/adminbase.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container my-4">
+
+    <h2 class="mb-4 text-info">
+        Owner-added Pets Pending Approval
+    </h2>
+
+    {% if pets %}
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+
+            {% for pet in pets %}
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+
+                    {% if pet.photo %}
+                        <img src="{{ pet.photo.url }}"
+                             class="card-img-top"
+                             alt="{{ pet.name }}">
+                    {% else %}
+                        <img src="{% static 'images/dog.png' %}"
+                             class="card-img-top"
+                             alt="No photo">
+                    {% endif %}
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ pet.name }}</h5>
+
+                        <p class="card-text">
+                            <strong>Category:</strong>
+                            {{ pet.category.name }}<br>
+
+                            <strong>Breed:</strong>
+                            {% if pet.breed %}
+                                {{ pet.breed.name }}
+                            {% else %}
+                                N/A
+                            {% endif %}<br>
+
+                            <strong>Owner:</strong>
+                            {{ pet.owner.username }}<br>
+
+                            <strong>Status:</strong>
+                            <span class="badge bg-warning">
+                                {{ pet.approval_status }}
+                            </span>
+                        </p>
+                    </div>
+
+                    <!-- APPROVE / REJECT BUTTONS -->
+                    <div class="card-footer d-flex justify-content-between">
+
+                        <form method="post"
+                              action="{% url 'set_pet_status' pet.id 'Approved' %}">
+                            {% csrf_token %}
+                            <button type="submit"
+                                    class="btn btn-success btn-sm">
+                                Approve
+                            </button>
+                        </form>
+
+                        <form method="post"
+                              action="{% url 'set_pet_status' pet.id 'Rejected' %}">
+                            {% csrf_token %}
+                            <button type="submit"
+                                    class="btn btn-danger btn-sm">
+                                Reject
+                            </button>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    {% else %}
+        <div class="alert alert-info">
+            No owner-added pets are pending approval.
+        </div>
+    {% endif %}
+
+</div>
+{% endblock %}

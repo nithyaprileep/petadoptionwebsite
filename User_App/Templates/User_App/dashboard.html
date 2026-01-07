@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container py-4">
+<div class="text-center mb-5 p-4 rounded-4 shadow-sm"
+     style="background: linear-gradient(135deg, #e8f5e9, #e3f2fd);">
+    <h2 class="fw-bold mb-1">
+        Welcome, 
+        <span class="text-success">
+            {{ request.user.first_name|default:request.user.username }}
+        </span> 👋
+    </h2>
+    <p class="text-muted mb-0">
+        Find your perfect companion and track adoptions here
+    </p>
+</div>
+
+<!-- QUICK ACTIONS -->
+<div class="row g-4 mb-5">
+
+    <!-- Pet Food Store -->
+    <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-body text-center">
+                <h5 class="fw-bold mb-2">🛍 Pet Food Store</h5>
+                <p class="text-muted small">
+                    Browse and buy food for your pets
+                </p>
+                <a href="{% url 'pet_food_list' %}"
+                   class="btn btn-success w-100">
+                    View Pet Foods
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- My Cart -->
+    <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-body text-center">
+                <h5 class="fw-bold mb-2">🛒 My Cart</h5>
+                <p class="text-muted small">
+                    Review items & proceed to checkout
+                </p>
+                <a href="{% url 'view_cart' %}"
+                   class="btn btn-outline-dark w-100">
+                    View Cart
+                </a>
+            </div>
+        </div>
+    </div>
+
+   
+    <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-body text-center">
+                <h5 class="fw-bold mb-2">📦 Book Grooming</h5>
+                <p class="text-muted small">
+                    Book your Pets Grooming Services
+                </p>
+                 <a href="{% url 'services' %}"
+                       class="btn btn-primary btn-sm w-100">
+                        Servives
+                    </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <!-- AVAILABLE PETS -->
+    
+    <h4 class="mb-4 fw-bold text-success">
+    🐾 Available Pets
+</h4>
+
+    <div class="row g-4">
+        {% for pet in available_pets %}
+        <div class="col-md-3">
+            <div class="card shadow-sm h-100">
+                <img src="{{ pet.photo.url }}" class="card-img-top"
+                     style="height:200px; object-fit:cover;">
+                <div class="card-body">
+                    <h6 class="card-title">{{ pet.name }}</h6>
+                    <p class="text-muted small mb-1">{{ pet.breed }}</p>
+                    <span class="badge bg-success">Available</span>
+                </div>
+                <div class="card-footer bg-white border-0">
+                    <a href="{% url 'user_pet_detail' pet.id %}"
+                       class="btn btn-primary btn-sm w-100">
+                        View Details
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-muted">No pets available right now.</p>
+        {% endfor %}
+    </div>
+
+    <!-- ADOPTED PETS -->
+    <hr class="my-5">
+    
+    <h4 class="mb-4 fw-bold text-success">
+    ❤️ Adopted Pets
+</h4>
+
+    
+
+    <div class="row g-4">
+        {% for pet in adopted_pets %}
+        <div class="col-md-3">
+            <div class="card shadow-sm h-100 opacity-75">
+                <img src="{{ pet.photo.url }}" class="card-img-top"
+                     style="height:200px; object-fit:cover;">
+                <div class="card-body">
+                    <h6 class="card-title">{{ pet.name }}</h6>
+                    <p class="text-muted small mb-1">{{ pet.breed }}</p>
+                    <span class="badge bg-danger">Adopted</span>
+                </div>
+                <div class="card-footer bg-white border-0">
+                    <button class="btn btn-secondary btn-sm w-100" disabled>
+                        Already Adopted
+                    </button>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-muted">No adopted pets yet.</p>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}

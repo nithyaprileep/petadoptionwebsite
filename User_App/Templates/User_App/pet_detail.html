@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ pet.name }} | Pet Details{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row g-5 align-items-start">
+
+        <!-- LEFT: Pet Image -->
+        <div class="col-lg-6">
+            <div class="card border-0 shadow rounded-4 overflow-hidden h-100">
+                {% if pet.photo %}
+                    <img src="{{ pet.photo.url }}" class="img-fluid w-100 h-100" style="object-fit: cover; min-height: 420px;" alt="{{ pet.name }}">
+                {% else %}
+                    <img src="{% static 'img/default_pet.jpg' %}" class="img-fluid w-100 h-100" style="object-fit: cover; min-height: 420px;" alt="No image">
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- RIGHT: Pet Details -->
+        <div class="col-lg-6">
+            <div class="card border-0 shadow rounded-4 p-4 p-lg-5 h-100">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <h2 class="fw-bold">{{ pet.name }}</h2>
+                    {% if pet.availability == "Available" %}
+                        <span class="badge bg-success fs-6 px-3 py-2">Available</span>
+                    {% elif pet.availability == "Pending" %}
+                        <span class="badge bg-warning text-dark fs-6 px-3 py-2">Pending</span>
+                    {% else %}
+                        <span class="badge bg-danger fs-6 px-3 py-2">Adopted</span>
+                    {% endif %}
+                </div>
+
+                <p class="text-muted fs-5">{{ pet.description|default:"No description available." }}</p>
+                <hr class="my-4">
+
+                <div class="row gy-3">
+                    <div class="col-6"><strong>Category</strong><br>{{ pet.category.name }}</div>
+                    <div class="col-6"><strong>Breed</strong><br>{% if pet.breed %}{{ pet.breed.name }}{% else %}N/A{% endif %}</div>
+                    <div class="col-6"><strong>Age</strong><br>{{ pet.age }}</div>
+                    <div class="col-6"><strong>Gender</strong><br>{{ pet.gender }}</div>
+                    <div class="col-6"><strong>Colour</strong><br>{{ pet.colour }}</div>
+                </div>
+
+                <hr class="my-4">
+
+                <!-- Adoption Request Button -->
+                {% if pet.availability == "Available" %}
+                    {% if user_request_exists %}
+                        <button class="btn btn-secondary w-100" disabled>Request Already Sent</button>
+                    {% else %}
+                        <form method="post" action="{% url 'send_adoption_request' pet_id=pet.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary w-100">Request Adoption</button>
+                        </form>
+                    {% endif %}
+                {% elif pet.availability == "Pending" %}
+                    <button class="btn btn-warning w-100" disabled>Pending Approval</button>
+                {% else %}
+                    <button class="btn btn-secondary w-100" disabled>Adopted</button>
+                {% endif %}
+
+                <!-- Messages -->
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-info mt-3">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

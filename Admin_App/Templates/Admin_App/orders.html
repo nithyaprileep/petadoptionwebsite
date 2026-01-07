@@ -1,0 +1,58 @@
+{% extends "Admin_App/adminbase.html" %}
+{% block content %}
+
+<div class="container py-4">
+    <h3 class="mb-4"style="color: aqua;">📦 Food Orders</h3>
+
+    <table class="table table-striped shadow">
+        <thead>
+            <tr style="color: aqua;">
+                <th>Order ID</th>
+                <th>User</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Update</th>
+            </tr>
+        </thead>
+
+        <tbody style="color: aqua;">
+        {% for order in orders %}
+            <tr>
+                <td>#{{ order.id }}</td>
+                <td>{{ order.user.username }}</td>
+                <td>₹{{ order.total_price }}</td>
+                <td>
+                    <span class="badge bg-info">
+                        {{ order.get_status_display }}
+                    </span>
+                </td>
+                <td>
+                    <form method="post"
+                          action="{% url 'update_order_status' order.id %}">
+                        {% csrf_token %}
+                        <select name="status" class="form-select form-select-sm">
+                            {% for key, value in order.STATUS_CHOICES %}
+                                <option value="{{ key }}"
+                                  {% if key == order.status %}selected{% endif %}>
+                                    {{ value }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <button class="btn btn-sm btn-success mt-2">
+                            Save
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        {% empty %}
+            <tr style="color: aqua;">
+                <td style="color: aqua;"colspan="5" class="text-center text-muted">
+                    No orders yet
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

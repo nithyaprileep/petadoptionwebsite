@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard - Pet Adoption</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+    
+</head>
+
+<body style="background: linear-gradient(135deg, #fff3e0, #ff7a18); min-height: 100vh;">
+
+<!-- Header -->
+<div id="sticky-header" class="main-header-area bg-dark shadow-sm">
+    <div class="container">
+        <!-- Logo -->
+         
+        <div class="row">
+              
+            <div class="col-12 text-center py-3">
+                 <a href="{% url 'admin_dashboard' %}" class="d-flex align-items-center text-decoration-none">
+            <img src="{% static 'images/pet_logo.png' %}" alt="PetNest Logo" style="width: 60px; height: 60px; margin-right: 10px;">
+            <h1 style="
+                font-family: 'Poppins', sans-serif; 
+                font-size: 48px; 
+                font-weight: 800; 
+                letter-spacing: -1px; 
+                color: #ff7a18;
+                text-shadow: 0px 3px 8px rgba(0,0,0,0.15);
+                margin: 0;">
+                PETNEST
+            </h1>
+        </a>
+            </div>
+        </div>
+
+        <!-- Navbar -->
+       <div class="row">
+    <div class="col-12">
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-gradient shadow-sm rounded-bottom" style="background: linear-gradient(90deg, #ec6319, #99f2c8);">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#adminNavbar" aria-controls="adminNavbar" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-center" id="adminNavbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item mx-2">
+                            <a class="nav-link fw-semibold text-white px-3 py-2 rounded nav-hover" href="{% url 'admin_dashboard' %}">Dashboard</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link fw-semibold text-white px-3 py-2 rounded nav-hover" href="{% url 'admin_food_list' %}">Foods</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link fw-semibold text-white px-3 py-2 rounded nav-hover" href="{% url 'admin_orders' %}">Orders</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link fw-semibold text-white px-3 py-2 rounded nav-hover" href="{% url 'admin_adoption_requests' %}">Adoptions</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link fw-semibold text-white px-3 py-2 rounded nav-hover" href="{% url 'admin_owner_requests' %}">Owner Requests</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link fw-bold text-danger px-3 py-2 rounded nav-hover" href="{% url 'logout' %}">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<!-- Main Container -->
+<div class="container-fluid mt-4">
+    {% block content %}
+    {% endblock %}
+</div>
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<footer class="admin-footer mt-5 py-4">
+    <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
+        <!-- Pet Image -->
+        <div class="mb-3 mb-md-0 d-flex align-items-center">
+            <img src="{% static 'images/pet_logo.png' %}" alt="PetNest Logo" style="width: 50px; height: 50px; margin-right: 10px;">
+            
+            <span style="font-weight: 600; color: #ff7a18; font-size: 1.1rem;">PETNEST</span>
+        </div>
+
+        <!-- Footer Text -->
+        <div class="text-muted" style="opacity: 0.8;">
+            &copy; {{ current_year }} PetNest. All rights reserved.
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

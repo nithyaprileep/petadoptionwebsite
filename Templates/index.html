@@ -1,0 +1,217 @@
+{% load static %}
+
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Animal</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/gijgo.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slicknav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+    <!-- <link rel="stylesheet" href="{% static 'css/responsive.css' %}"> -->
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+    <header>
+        <div class="header-area ">
+            <div class="header-top_area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-8">
+                            <div class="short_contact_list">
+                                <ul>
+                                    <li><a href="#">+880 4664 216</a></li>
+                                    <li><a href="#">Mon - Sat 10:00 - 7:00</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- <div class="col-lg-6 col-md-4 ">
+                            <div class="social_media_links">
+                                <a href="#">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-pinterest-p"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div id="sticky-header" class="main-header-area">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-xl-3 col-lg-3">
+                            <div class="logo">
+                                <a href="index.html">
+                                    <!-- <img src="img/logo.png" alt=""> -->
+                                     <h1 style="font-family: 'Poppins', sans-serif; 
+           font-size: 48px; 
+           font-weight: 800; 
+           letter-spacing: -1px; 
+           color: #ff7a18;
+           text-shadow: 0px 3px 8px rgba(0,0,0,0.15);">
+  PETNEST
+</h1>
+
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xl-9 col-lg-9">
+                            <div class="main-menu  d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        <li><a  href="{% url 'home' %}">home</a></li>
+                                        <li><a href="{% url 'about' %}">about</a></li>
+                                        
+                                      <li><a href="{% url 'services' %}">services</a></li>
+
+                                        <li><a href="{% url 'contact' %}">Contact</a></li>
+                                   
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- slider_area_start -->
+    <div class="slider_area">
+        <div class="single_slider slider_bg_1 d-flex align-items-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 col-md-6">
+                        <div class="slider_text">
+                            <h3>“Adopt a pet <br> <span></span> save a life, gain a friend.” </span></h3>
+                            <!-- <p>Lorem ipsum dolor sit amet, consectetur <br> adipiscing elit, sed do eiusmod.</p>
+                            -->
+                            <!-- <a href="contact.html" class="boxed-btn4">Contact Us</a>-->
+                            <a href="{% url 'login' %}" class="boxed-btn4">🔐 Sign In</a> 
+                            
+
+                             <a href="{% url 'register' %}" class="boxed-btn4">
+            🐕 Adopt a Pet
+        </a>
+        <br>
+        <a href="{% url 'owner_register' %}" class="boxed-btn4">
+            🏠 Give a Pet for Adoption
+        </a> 
+                              
+    <!--  -->
+
+                            <!-- <a href="contact.html" class="boxed-btn4">Contact Us</a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dog_thumb d-none d-lg-block">
+                <!-- <img src="img/banner/dog.png" alt=""> -->
+                {% load static %}
+<img src="{% static 'img/banner/dog.png' %}" alt="Dog">
+
+            </div>
+        </div>
+    </div>
+    <!-- slider_area_end -->
+
+    	</div>
+        
+<br><br><br>
+						<main id="main" class="clearfix ">
+				<div class="fusion-row" style="padding-left: 200px;">
+
+<section id="content" style="width: 100%;">
+        	<div class="fusion-flexslider flexslider fusion-flexslider-loading post-slideshow fusion-post-slideshow"></div>
+				<h1 class="entry-title fusion-post-title">Everything You Need to Know Before Adopting a Pet</h1>										<div class="post-content">
+				<div class="fusion-fullwidth fullwidth-box fusion-builder-row-1 fusion-flex-container nonhundred-percent-fullwidth non-hundred-percent-height-scrolling" style="--awb-border-radius-top-left:0px;--awb-border-radius-top-right:0px;--awb-border-radius-bottom-right:0px;--awb-border-radius-bottom-left:0px;--awb-flex-wrap:wrap;" ><div class="fusion-builder-row fusion-row fusion-flex-align-items-flex-start fusion-flex-content-wrap" style="max-width:1248px;margin-left: calc(-4% / 2 );margin-right: calc(-4% / 2 );"><div class="fusion-layout-column fusion_builder_column fusion-builder-column-0 fusion_builder_column_1_1 1_1 fusion-flex-column" style="--awb-bg-size:cover;--awb-width-large:100%;--awb-margin-top-large:0px;--awb-spacing-right-large:1.92%;--awb-margin-bottom-large:0px;--awb-spacing-left-large:1.92%;--awb-width-medium:100%;--awb-spacing-right-medium:1.92%;--awb-spacing-left-medium:1.92%;--awb-width-small:100%;--awb-spacing-right-small:1.92%;--awb-spacing-left-small:1.92%;"><div class="fusion-column-wrapper fusion-flex-justify-content-flex-start fusion-content-layout-column"><div class="fusion-text fusion-text-1"><p><span style="font-weight: 400;">Choosing to adopt a pet is a decision that will change your life and the life of your new companion. However, the joy of pet ownership can be maximized by understanding what pet adoption involves. To ensure that you&#8217;re prepared for this life-altering decision, this guide will detail everything you need to know before adopting a pet.</span></p>
+<p>&nbsp;</p>
+<h3><b>1. Understand the Commitment</b></h3>
+<p><span style="font-weight: 400;">When you adopt a pet, you&#8217;re taking on a commitment that could last for more than a decade. Pets require a significant investment of time, money, and care. You&#8217;ll need to be ready for walks, feeding, grooming, and playtime, not to mention unexpected trips to the vet. This commitment will shape your lifestyle in many ways.</span></p>
+<p>&nbsp;</p>
+<h3><b>2. Pet Adoption Is a Lifelong Commitment</b></h3>
+<p><span style="font-weight: 400;">Pet adoption is not a temporary solution. When you adopt, you&#8217;re pledging to care for your new pet for its entire life. Therefore, it&#8217;s crucial to consider your future plans and if a pet fits into them. Take into account any potential moves, changes in work schedules, or plans to start a family.</span></p>
+<p>&nbsp;</p>
+<h3><b>3. Research the Right Pet for You</b></h3>
+<p><span style="font-weight: 400;">Different pets come with different needs and responsibilities. Before adopting a pet, do your research on what types of pets would best fit your lifestyle and living situation. For example, the</span><a href="https://strayanimalfoundationindia.org/what-are-some-of-the-most-common-indian-dog-breeds/"> <span style="font-weight: 400;">most common Indian dog breeds</span></a> <span style="font-weight: 400;">make great pets but can differ greatly in their needs and temperaments.</span></p>
+<p>&nbsp;</p>
+<h3><b>4. Prepare for the Costs</b></h3>
+<p><span style="font-weight: 400;">Pets are not cheap. From food and veterinary care to grooming and unexpected medical expenses, the costs can add up quickly. Budget for your pet&#8217;s needs in advance to ensure you can provide for them properly.</span></p>
+<p>&nbsp;</p>
+<h3><b>Pet Adoption Checklist</b></h3>
+<p><span style="font-weight: 400;">Before you proceed with adopting a pet, here&#8217;s a </span><b>pet adoption checklist</b><span style="font-weight: 400;"> to guide you through the process:</span></p>
+<ul>
+<li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">Evaluate your readiness to adopt</span></li>
+<li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">Understand the financial costs</span></li>
+<li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">Research potential pets</span></li>
+<li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">Prepare your home</span></li>
+<li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">Choose a reputable adoption center</span></li>
+<li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">Ask questions about your potential pet&#8217;s health and history</span></li>
+<li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">Consider</span><a href="https://strayanimalfoundationindia.org/the-importance-of-spaying-and-neutering-pets/"> <span style="font-weight: 400;">the importance of spaying and neutering pets</span></a></li>
+<li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">Ensure everyone in the household is prepared for the new arrival</span></li>
+</ul>
+<p>&nbsp;</p>
+<p><span style="font-weight: 400;">Remember, pet adoption is a long-term commitment. If you&#8217;re unsure, consider</span><a href="https://strayanimalfoundationindia.org/3-ways-to-help-stray-animals/"> <span style="font-weight: 400;">ways to help stray animals</span></a><span style="font-weight: 400;"> or explore other</span><a href="https://strayanimalfoundationindia.org/3-ways-to-help-animals-in-india/"> <span style="font-weight: 400;">ways to help animals in India</span></a> <span style="font-weight: 400;">without adopting.</span></p>
+<p><span style="font-weight: 400;">When done responsibly, pet adoption can be one of the most rewarding decisions you&#8217;ll ever make. Understanding the commitment, choosing the right pet, and preparing your home and lifestyle for a pet can make the difference between a stressful situation and a fulfilling relationship. Always remember, when you decide to adopt, you are choosing to</span><a href="https://strayanimalfoundationindia.org/what-does-adopt-dont-shop-mean/"> <span style="font-weight: 400;">adopt, not shop</span></a><span style="font-weight: 400;">, thereby contributing to a more humane world. Happy adopting!</span></p>
+<p>&nbsp;</p>
+<p><span style="font-weight: 400;">At </span><b>Stray Animal Foundation of India (SAFI)</b><span style="font-weight: 400;">, we are focused on helping stray animals in India receive the care and support they need. We work tirelessly to restore compassion to India’s relationship with its stray animals and ease the strain on the country’s overburdened shelter network. We do this in </span><a href="https://strayanimalfoundationindia.org/about/"><span style="font-weight: 400;">many different ways</span></a><span style="font-weight: 400;">, including providing funding, shelter infrastructure, organizational support, vet care, supplies, guidance, resources, education, manpower, and more. If you are interested in adopting one of the animals we are sheltering, you can learn more about the process </span><a href="https://strayanimalfoundationindia.org/adopt/"><span style="font-weight: 400;">here</span></a><span style="font-weight: 400;">!</span><span style="font-weight: 400;">We rely on charitable contributions to continue the crucial work that we do, and 100% of contributions are deployed in the field. These donations directly affect the number of strays we are able to rescue, treat, and shelter. You can help us make a difference in the lives of India’s animals by </span><a href="https://strayanimalfoundationindia.org/donate/"><span style="font-weight: 400;">donating to our cause</span></a><span style="font-weight: 400;"> today!</span></p>
+</div></div></div></div></div>
+							</div>
+
+                                                    <h4>Share This Story, Choose Your Platform!</h4>
+			
+<br><br><br>
+		<div id="respond" class="comment-respond">
+		<h2 id="reply-title" class="comment-reply-title">Leave A Comment <small><a rel="nofollow" id="cancel-comment-reply-link" href="/everything-you-need-to-know-before-adopting-a-pet/?gad_source=1&#038;gad_campaignid=20330189403&#038;gbraid=0AAAAAoghswfUCE9PU7Yd6c5Sg_erEaRLd&#038;gclid=Cj0KCQiAxonKBhC1ARIsAIHq_lvmuQe0KpICHSN-5FxyHwsAQ2kizwRpDtxh3CcvFKoz6O-dHxMDFogaApLdEALw_wcB#respond" style="display:none;">Cancel reply</a></small></h2><form action="https://strayanimalfoundationindia.org/wp-comments-post.php" method="post" id="commentform" class="comment-form"><div id="comment-textarea"><label class="screen-reader-text" for="comment">Comment</label><textarea name="comment" id="comment" cols="45" rows="8" aria-required="true" required="required" tabindex="0" class="textarea-comment" placeholder="Comment..."></textarea></div><div id="comment-input"><input id="author" name="author" type="text" value="" placeholder="Name (required)" size="30" aria-required="true" required="required" aria-label="Name (required)"/>
+<input id="email" name="email" type="email" value="" placeholder="Email (required)" size="30"  aria-required="true" required="required" aria-label="Email (required)"/>
+<input id="url" name="url" type="url" value="" placeholder="Website" size="30" aria-label="URL" /></div>
+<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes" /><label for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="comment-submit" class="fusion-button fusion-button-default fusion-button-default-size" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='435668' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="d10a75d718" /></p><p style="display: none !important;" class="akismet-fields-container" data-prefix="ak_"><label>&#916;<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="239"/><script>document.getElementById( "ak_js_1" ).setAttribute( "value", ( new Date() ).getTime() );</script></p></form>	</div><!-- #respond -->
+														</article>
+	</section>
+						
+					</div>  <!-- fusion-row -->
+                    </div>
+            
+</main>
+
+</body>
+
+</html>

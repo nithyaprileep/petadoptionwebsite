@@ -1,0 +1,67 @@
+{% extends 'Owner_App/ownerbase.html' %}
+{% load static %}
+
+{% block title %}Edit Pet{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">🐾 My Pets</h2>
+        <a href="{% url 'add_pet' %}" class="btn btn-primary">
+            + Add New Pet
+        </a>
+    </div>
+
+    {% if pets %}
+    <div class="row g-4">
+        {% for pet in pets %}
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0">
+
+                <!-- Pet Image -->
+                <div class="pet-img-box">
+                    <img src="{{ pet.photo.url }}" alt="{{ pet.name }}">
+                </div>
+
+                <!-- Card Body -->
+                <div class="card-body text-center">
+                    <h5 class="fw-semibold">{{ pet.name }}</h5>
+
+                    <!-- Status Badge -->
+                    <span class="badge 
+                        {% if pet.availability == 'Available' %} bg-success
+                        {% else %} bg-secondary {% endif %}">
+                        {{ pet.availability }}
+                    </span>
+
+                    <!-- Actions -->
+                    <div class="mt-3 d-flex justify-content-center gap-2">
+                        <a href="{% url 'owner_pet_detail' pet.id %}"
+                           class="btn btn-outline-primary btn-sm">
+                            View
+                        </a>
+                        <a href="{% url 'owner_pet_edit' pet.id %}"
+                           class="btn btn-outline-warning btn-sm">
+                            Edit
+                        </a>
+                        <a href="{% url 'owner_pet_delete' pet.id %}"
+                           class="btn btn-outline-danger btn-sm">
+                            Delete
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+        <div class="alert alert-info text-center">
+            You have not added any pets yet 🐶
+        </div>
+    {% endif %}
+
+</div>
+{% endblock %}

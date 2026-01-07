@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ pet.name }} | PETNEST{% endblock %}
+
+{% block content %}
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(to right, #c86706, #b1600f);
+        }
+        .card {
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        .image-preview {
+            border: 2px dashed #ccc;
+            border-radius: 12px;
+            height: 260px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #f8f9fa;
+        }
+        .image-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+
+            <div class="card p-4" style="background-color: rgb(239, 169, 156);">
+                <h3 class="text-center fw-bold mb-4" style="color: rgb(16, 170, 170);">
+                    🐶 Add a New Pet
+                </h3>
+
+                {% if error %}
+                <div class="alert alert-danger text-center">{{ error }}</div>
+                {% endif %}
+                
+                <form method="POST" enctype="multipart/form-data" >
+                    {% csrf_token %}
+
+                    <div class="row g-4">
+
+                        <!-- LEFT SIDE -->
+                        <div class="col-md-6">
+
+                            <!-- Category -->
+                            <div class="form-floating mb-3" style="color: aqua;">
+                                <select class="form-select" name="category" required>
+                                    <option value="">Select Category</option>
+                                    {% for cat in categories %}
+                                    <option value="{{ cat.id }}">{{ cat.name }}</option>
+                                    {% endfor %}
+                                </select>
+                                <label>Pet Category</label>
+                            </div>
+
+                            <!-- Breed -->
+                            <div class="mb-3">
+        <label class="fw-bold d-block">Select Breed</label>
+        {{ form.breed }}
+    </div>
+
+    <div class="mb-3">
+        {{ form.new_breed.label_tag }}
+        {{ form.new_breed }}<input type="text" class="form-control" placeholder="If Not Enter Breed">
+
+    </div>
+                                <!-- <label>Breed</label> -->
+                            </div>
+
+                            <!-- Name -->
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="name" placeholder="Pet Name" required>
+                                <label>Pet Name</label>
+                            </div>
+
+                            <!-- Age & Gender -->
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-floating mb-3">
+                                        <input type="number" class="form-control" name="age" placeholder="Age">
+                                        <label>Age</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-floating mb-3">
+                                        <select class="form-select" name="gender">
+                                            <option value="">Select</option>
+                                            <option>Male</option>
+                                            <option>Female</option>
+                                        </select>
+                                        <label>Gender</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Colour -->
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="colour" placeholder="Colour">
+                                <label>Colour</label>
+                            </div>
+
+                            <!-- Description -->
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" name="description" style="height: 100px;"></textarea>
+                                <label>Description</label>
+                            </div>
+
+                        </div>
+
+                        <!-- RIGHT SIDE -->
+                        <div class="col-md-6">
+
+                            <!-- Image Preview -->
+                            <div class="image-preview mb-3" id="imagePreview">
+                                <span class="text-muted text-center">
+                                    <i class="bi bi-cloud-upload fs-1"></i><br>
+                                    Upload Pet Image
+                                </span>
+                            </div>
+
+                            <!-- Image Upload -->
+                            <input type="file" name="photo" class="form-control" accept="image/*"
+                                   onchange="previewImage(event)" required>
+
+                            <p class="text-muted mt-2 text-center">
+                                JPG, PNG – Max 5MB
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <!-- Submit -->
+                    <div class="text-center mt-4">
+                        <button class="btn btn-success px-5 py-2 rounded-pill fw-semibold">
+                            <i class="bi bi-plus-circle"></i> Add Pet
+                        </button>
+                        <a href="{% url 'owner_dashboard' %}" class="btn btn-outline-secondary ms-2 rounded-pill">
+                            Cancel
+                        </a>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- JS -->
+<script>
+    function previewImage(event) {
+        const preview = document.getElementById('imagePreview');
+        preview.innerHTML = '';
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(event.target.files[0]);
+        preview.appendChild(img);
+    }
+</script>
+{% if messages %}
+<div class="container mt-3">
+    {% for message in messages %}
+        <div class="alert alert-success text-center" role="alert">
+            <p class="mb-3 fw-semibold">{{ message }}</p>
+            <button class="btn btn-success" onclick="this.parentElement.style.display='none'">
+                OK
+            </button>
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% endblock %}

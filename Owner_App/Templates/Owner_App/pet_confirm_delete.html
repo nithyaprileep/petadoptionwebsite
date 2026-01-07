@@ -1,0 +1,16 @@
+{% extends 'Owner_App/ownerbase.html' %}
+{% load static %}
+
+{% block title %} Pet Detail{% endblock %}
+
+{% block content %}
+
+<h3>Delete {{ pet.name }}?</h3>
+<p>This action cannot be undone.</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+    <a href="{% url 'owner_pet_list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="mb-4">🛒 Your Cart</h2>
+
+{% if cart.items.all %}
+<table class="table table-bordered text-center align-middle">
+    <thead class="table-light">
+        <tr>
+            <th>Food</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    {% for item in cart.items.all %}
+        <tr>
+            <td>{{ item.food.name }}</td>
+            <td>₹ {{ item.food.price }}</td>
+            <td>
+                <a href="{% url 'decrease_quantity' item.id %}" class="btn btn-sm btn-outline-danger">−</a>
+                <span class="mx-2">{{ item.quantity }}</span>
+                <a href="{% url 'increase_quantity' item.id %}" class="btn btn-sm btn-outline-success">+</a>
+            </td>
+            <td>₹ {{ item.total_price }}</td>
+            <td>
+                <a href="{% url 'decrease_quantity' item.id %}" class="btn btn-sm btn-danger">
+                    Remove
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<h4 class="text-end">Grand Total: ₹ {{ total }}</h4>
+
+<div class="text-end mt-3">
+    <a href="{% url 'checkout' %}" class="btn btn-success">
+        Proceed to Checkout
+    </a>
+</div>
+
+{% else %}
+    <p>Your cart is empty 🐾</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,38 @@
+/* Full background */
+.user-body {
+    background: linear-gradient(135deg, #fffaf5, #fff);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navbar */
+.user-navbar {
+    background-color: #ffffff;
+    border-bottom: 3px solid #ff7a18;
+}
+
+/* Logo text */
+.logo-text {
+    font-size: 28px;
+    font-weight: 800;
+    color: #ff7a18;
+    letter-spacing: -1px;
+}
+
+/* Nav links */
+.nav-link {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #ef5e0a !important;
+}
+
+.nav-link:hover {
+    color: #ff7a18 !important;
+}
+
+/* Footer */
+.user-footer {
+    background-color: #ffffff;
+    border-top: 2px solid #ff7a18;
+}

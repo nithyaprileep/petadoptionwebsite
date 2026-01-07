@@ -1,0 +1,45 @@
+{% extends 'Admin_App/adminbase.html' %}
+{% block title %}Adoption Requests{% endblock %}
+
+{% block content %}
+
+<div class="container py-4">
+  <h2 style="color: aqua;">Pending Adoption Requests</h2>
+  <table class="table table-bordered table-hover mt-3">
+    <thead class="table-dark">
+      <tr style="color: aqua;">
+        <th>#</th>
+        <th>Pet</th>
+        <th>User</th>
+        <th>Date</th>
+        <th>Message</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for req in requests %}
+      <tr style="color: aqua;">
+        <td>{{ forloop.counter }}</td>
+        <td>{{ req.pet.name }}</td>
+        <td>{{ req.user.username }}</td>
+        <td>{{ req.created_at|date:"d M Y, h:i A" }}</td>
+        <td>{{ req.message|default:"---" }}</td>
+       <td style="color: aqua;">
+    <a href="{% url 'admin_approve_request' req.id %}" class="btn btn-success btn-sm">Approve</a>
+    <a href="{% url 'admin_reject_request' req.id %}" class="btn btn-danger btn-sm">Reject</a>
+</td>
+
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="6" class="text-center">
+          No pending requests
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'Owner_App/ownerbase.html' %}
+{% load static %}
+
+{% block title %} Pet Detail{% endblock %}
+
+{% block content %}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="card shadow-lg border-0 rounded-4">
+
+                <!-- Pet Image -->
+                <div class="pet-detail-img">
+                    <img src="{{ pet.photo.url }}" alt="{{ pet.name }}">
+                </div>
+
+                <!-- Card Body -->
+                <div class="card-body p-4">
+
+                    <!-- Pet Name -->
+                    <h2 class="fw-bold text-center mb-3">
+                        {{ pet.name }} 🐾
+                    </h2>
+
+                    <!-- Info Grid -->
+                    <div class="row text-center mb-4">
+                        <div class="col-4">
+                            <small class="text-muted">Age</small>
+                            <p class="fw-semibold">{{ pet.age }}</p>
+                        </div>
+                        <div class="col-4">
+                            <small class="text-muted">Breed</small>
+                            <p class="fw-semibold">{{ pet.breed }}</p>
+                        </div>
+                        <div class="col-4">
+                            <small class="text-muted">Status</small>
+                            <span class="badge 
+                                {% if pet.availability == 'Available' %} bg-success
+                                {% else %} bg-secondary {% endif %}">
+                                {{ pet.availability }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Description (Optional) -->
+                    {% if pet.description %}
+                    <div class="mb-4">
+                        <h6 class="fw-semibold">Description</h6>
+                        <p class="text-muted">{{ pet.description }}</p>
+                    </div>
+                    {% endif %}
+
+                    <!-- Action Buttons -->
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="{% url 'owner_pet_edit' pet.id %}"
+                           class="btn btn-outline-warning px-4">
+                            ✏️ Edit
+                        </a>
+                        <a href="{% url 'owner_pet_delete' pet.id %}"
+                           class="btn btn-outline-danger px-4">
+                            🗑️ Delete
+                        </a>
+                        <a href="{% url 'owner_pet_list' %}"
+                           class="btn btn-outline-secondary px-4">
+                            ⬅ Back
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

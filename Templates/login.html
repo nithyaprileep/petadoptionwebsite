@@ -1,0 +1,77 @@
+{% extends 'base1.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Login | PetNest{% endblock %}
+{% block content %}
+
+<style>
+    .login-container {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .login-card {
+        max-width: 900px;
+        width: 100%;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .login-img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+</style>
+
+<div class="container login-container">
+    <div class="row login-card g-0 bg-white">
+        
+        <!-- LEFT SIDE - LOGIN FORM -->
+        <div class="col-md-6 p-5">
+            <h3 class="text-center mb-4">Welcome Back 👋</h3>
+            
+            {% if error %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endif %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+
+            <form method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label class="form-label">Username</label>
+                    <input class="form-control" type="text" name="username" placeholder="Enter username" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input class="form-control" type="password" name="password" placeholder="Enter password" required>
+                </div>
+
+                <button class="btn btn-primary w-100 py-2" type="submit">Login</button>
+            </form>
+
+            <p class="text-center mt-3">
+                Don't have an account?
+                <a href="{% url 'register' %}" class="text-decoration-none">Register</a>
+            </p>
+        </div>
+
+        <!-- RIGHT SIDE IMAGE -->
+        <div class="col-md-6 d-none d-md-block">
+            <!-- <img src="https://images.unsplash.com/photo-1601758124363-56a1cbe31a0a" class="login-img" alt="Pet Image">
+       -->
+         <img src=" {% static 'images/pug.png' %} " class="login-img" alt="Pet Image">
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

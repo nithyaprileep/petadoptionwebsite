@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Services | PetNest{% endblock %}
+
+{% block content %}
+
+<!-- ===== SERVICES HEADER ===== -->
+<div class="container py-5 text-center">
+    <h1 class="orange-heading">Our Services 🐾</h1>
+    <p class="text-muted fs-5 mt-2">
+        Premium care services to keep your pets healthy and happy
+    </p>
+</div>
+
+<!-- ===== SERVICES LIST ===== -->
+<div class="container">
+    <div class="row g-4">
+
+        <!-- Grooming -->
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm rounded-4 text-center p-4">
+                <img src="{% static 'images/pet_grooming.png' %}" class="mx-auto mb-3" width="80">
+                <h4 class="orange-heading">Pet Grooming</h4>
+                <p class="text-muted">
+                    Bath, hair trimming, nail clipping & hygiene care.
+                </p>
+                <button class="btn btn-warning rounded-pill" onclick="showGroomingForm()">
+                    Book Grooming
+                </button>
+            </div>
+        </div>
+
+        <!-- Veterinary -->
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm rounded-4 text-center p-4">
+                <img src="{% static 'images/vet.png' %}" class="mx-auto mb-3" width="80">
+                <h4 class="orange-heading">Vet Consultation</h4>
+                <p class="text-muted">Professional veterinary advice.</p>
+                <button class="btn btn-outline-secondary rounded-pill" disabled>
+                    Coming Soon
+                </button>
+            </div>
+        </div>
+
+        <!-- Training -->
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm rounded-4 text-center p-4">
+                <img src="{% static 'images/training.png' %}" class="mx-auto mb-3" width="80">
+                <h4 class="orange-heading">Pet Training</h4>
+                <p class="text-muted">Obedience & behavior training.</p>
+                <button class="btn btn-outline-secondary rounded-pill" disabled>
+                    Coming Soon
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ===== GROOMING FORM ===== -->
+<div class="container py-5 d-none" id="groomingSection">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="card shadow rounded-4 p-4">
+                <h3 class="orange-heading mb-4">Grooming Booking</h3>
+
+                <!-- Pet details -->
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Pet Name</label>
+                        <input type="text" id="petName" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Service Date</label>
+                        <input type="date" id="serviceDate" class="form-control">
+                    </div>
+                </div>
+
+                <!-- Services -->
+                <h5 class="orange-heading mt-3">Select Services</h5>
+
+                <div class="form-check">
+                    <input class="form-check-input service-checkbox"
+                           type="checkbox"
+                           data-name="Bath"
+                           data-price="500">
+                    <label class="form-check-label">Bath – ₹500</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input service-checkbox"
+                           type="checkbox"
+                           data-name="Hair Cut"
+                           data-price="700">
+                    <label class="form-check-label">Hair Cut – ₹700</label>
+                </div>
+
+                <div class="mt-3">
+                    <strong>Total: ₹ <span id="totalPrice">0</span></strong>
+                </div>
+
+                <div class="text-center mt-4">
+                    <button class="btn btn-success rounded-pill px-4"
+                            onclick="confirmGrooming()">
+                        Confirm Booking
+                    </button>
+                </div>
+            </div>
+
+            <!-- Confirmation -->
+            <div id="confirmationMessage"
+                 class="alert mt-4 rounded-4 shadow-sm d-none"
+                 style="background:#e8fff3; border:1px solid #8ce0b8;">
+                <h5>🐾 Grooming Booking Confirmed</h5>
+                <p><strong>Pet Name:</strong> <span id="cPet"></span></p>
+                <p><strong>Date:</strong> <span id="cDate"></span></p>
+                <p><strong>Services:</strong></p>
+                <ul id="cServices"></ul>
+                <p class="fw-bold">Total Amount: ₹ <span id="cTotal"></span></p>
+                <p class="text-success mb-0">Thank you for choosing PETNEST 💚</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+function showGroomingForm() {
+    const section = document.getElementById("groomingSection");
+    section.classList.remove("d-none");
+    section.scrollIntoView({ behavior: "smooth" });
+}
+
+document.querySelectorAll(".service-checkbox").forEach(cb => {
+    cb.addEventListener("change", () => {
+        let total = 0;
+        document.querySelectorAll(".service-checkbox:checked").forEach(item => {
+            total += parseInt(item.dataset.price);
+        });
+        document.getElementById("totalPrice").innerText = total;
+    });
+});
+
+function confirmGrooming() {
+    const petName = document.getElementById("petName").value.trim();
+    const date = document.getElementById("serviceDate").value;
+    const services = document.querySelectorAll(".service-checkbox:checked");
+
+    if (!petName || !date || services.length === 0) {
+        alert("Please fill all details and select at least one service.");
+        return;
+    }
+
+    let total = 0;
+    const list = document.getElementById("cServices");
+    list.innerHTML = "";
+
+    services.forEach(s => {
+        const price = parseInt(s.dataset.price);
+        total += price;
+        const li = document.createElement("li");
+        li.textContent = `${s.dataset.name} – ₹${price}`;
+        list.appendChild(li);
+    });
+
+    document.getElementById("cPet").innerText = petName;
+    document.getElementById("cDate").innerText = date;
+    document.getElementById("cTotal").innerText = total;
+
+    document.getElementById("groomingSection").classList.add("d-none");
+    document.getElementById("confirmationMessage").classList.remove("d-none");
+}
+</script>
+
+{% endblock %}
