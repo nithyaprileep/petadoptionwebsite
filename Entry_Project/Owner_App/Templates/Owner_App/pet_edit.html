@@ -1,0 +1,109 @@
+
+{% extends 'Owner_App/ownerbase.html' %}
+{% load static %}
+
+{% block title %}Edit Pet{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body p-4">
+
+                    <!-- Title -->
+                    <h3 class="fw-bold text-center mb-4">
+                        ✏️ Edit Pet Details
+                    </h3>
+
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <!-- Category & Breed -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                {{ form.category.label_tag }}
+                                {{ form.category }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form.breed.label_tag }}
+                                {{ form.breed }}
+                            </div>
+                        </div>
+
+                        <!-- New Breed -->
+                        {% if form.new_breed %}
+                        <div class="mb-3">
+                            {{ form.new_breed.label_tag }}
+                            {{ form.new_breed }}
+                            <small class="text-muted">
+                                Enter only if breed not listed
+                            </small>
+                        </div>
+                        {% endif %}
+
+                        <!-- Name & Age -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                {{ form.name.label_tag }}
+                                {{ form.name }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form.age.label_tag }}
+                                {{ form.age }}
+                            </div>
+                        </div>
+
+                        <!-- Gender & Colour -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                {{ form.gender.label_tag }}
+                                {{ form.gender }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form.colour.label_tag }}
+                                {{ form.colour }}
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-3">
+                            {{ form.description.label_tag }}
+                            {{ form.description }}
+                        </div>
+
+                        <!-- Photo -->
+                        <div class="mb-3">
+                            {{ form.photo.label_tag }}
+                            {{ form.photo }}
+                        </div>
+
+                        <!-- Availability -->
+                        <div class="mb-4">
+                            {{ form.availability.label_tag }}
+                            {{ form.availability }}
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'owner_pet_list' %}"
+                               class="btn btn-outline-secondary px-4">
+                                ⬅ Cancel
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-success px-5">
+                                💾 Save Changes
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

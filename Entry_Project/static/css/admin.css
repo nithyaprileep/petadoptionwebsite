@@ -1,0 +1,119 @@
+/* Navbar link hover effect */
+.nav-hover {
+    transition: all 0.3s ease;
+    font-size: 1.5rem;  /* Increase font size */
+    font-weight: 600;   /* Slightly bolder */
+}
+
+.nav-hover:hover {
+    background-color: rgba(84, 26, 218, 0.15);
+    color: #fff !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+/* All cards in one row */
+
+.col-card {
+    flex: 0 0 18%; /* same width as before */
+    min-width: 180px;
+    display: flex;
+}
+.dashboard-card {
+    flex: 1; /* full height of parent flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff; /* white background */
+    border-left: 5px solid #ff7a18; /* orange accent */
+    color: #333; /* dark text */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.dashboard-card h5 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ff7a18; /* orange title */
+}
+
+.dashboard-card p {
+    font-size: 0.95rem;
+    opacity: 0.85;
+}
+
+/* Card width & horizontal scroll */
+.col-card {
+    flex: 0 0 18%;
+    min-width: 180px;
+    display: flex;
+}
+
+.overflow-auto {
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+}
+.admin-footer {
+    background-color: #ffffff; /* white footer */
+    border-top: 3px solid #ff7a18; /* orange accent line */
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+}
+.admin-footer img {
+    border-radius: 50%; /* make pet image circular */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+/* Nav links */
+.nav-link {
+    font-size: 1.15rem;      /* little bigger */
+    font-weight: 600;        /* bold but clean */
+    color: #333 !important;
+    padding: 8px 14px;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #ff7a18 !important;
+    transform: translateY(-1px); /* subtle hover lift */
+}
+.pet-img {
+    height: 100px;        /* 👈 reduce height */
+    width: 100%;
+    object-fit:cover;   /* crop, don't stretch */
+}
+ body {
+            background: #f8f9fa;
+        }
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card {
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        .hero-section {
+    background: linear-gradient(135deg, #6dd5ed, #2193b0);
+    padding: 80px 20px;
+    color: #fff;
+    border-radius: 0 0 40px 40px;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.95;
+}

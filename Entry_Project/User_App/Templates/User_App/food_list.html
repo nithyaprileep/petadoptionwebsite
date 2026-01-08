@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container py-4">
+
+    <!-- PAGE HEADER -->
+    <div class="text-center mb-5 p-4 rounded-4 shadow-sm"
+         style="background: linear-gradient(135deg, #fff3e0, #e8f5e9);">
+        <h2 class="fw-bold mb-1">🛍 Pet Food Store</h2>
+        <p class="text-muted mb-0">
+            Quality food for your lovely pets
+        </p>
+    </div>
+
+    <!-- FOOD LIST -->
+    <div class="row g-4">
+
+        {% for food in foods %}
+        <div class="col-md-3">
+            <div class="card shadow-sm h-100">
+                
+                <img src="{{ food.image.url }}"
+                     class="card-img-top"
+                     style="height:200px; object-fit:cover;">
+
+                <div class="card-body text-center">
+                    <h6 class="fw-bold">{{ food.name }}</h6>
+                    <p class="text-muted small mb-1">
+                        {{ food.brand }}
+                    </p>
+
+                    <span class="badge bg-info text-dark mb-2">
+                        {{ food.get_food_type_display }}
+                    </span>
+
+                    <p class="fw-bold mt-2">
+                        ₹ {{ food.price }}
+                    </p>
+
+                    {% if food.stock > 0 %}
+                        <a href="{% url 'add_to_cart' food.id %}"
+                           class="btn btn-success btn-sm w-100">
+                            Add to Cart
+                        </a>
+                    {% else %}
+                        <button class="btn btn-secondary btn-sm w-100" disabled>
+                            Out of Stock
+                        </button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+            <p class="text-muted text-center">
+                No pet food available right now 🐾
+            </p>
+        {% endfor %}
+
+    </div>
+
+    <!-- BACK TO DASHBOARD -->
+    <div class="text-center mt-5">
+        <a href="{% url 'dashboard' %}"
+           class="btn btn-outline-secondary">
+            ← Back to Dashboard
+        </a>
+
+        <a href="{% url 'view_cart' %}"
+           class="btn btn-dark ms-2">
+            🛒 View Cart
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}

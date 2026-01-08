@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Adoption Status{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+
+```
+        <!-- Status Card -->
+        <div class="card border-0 shadow rounded-4 p-4 p-lg-5">
+
+            <h3 class="fw-bold mb-4 text-center">Adoption Request Status</h3>
+
+            <!-- STATUS TIMELINE -->
+            <div class="adoption-status">
+
+                <!-- Admin Pending -->
+                <div class="d-flex align-items-start mb-4">
+                    <div class="status-icon bg-warning text-white">1</div>
+                    <div class="ms-3">
+                        <h6 class="mb-1">Admin Verification</h6>
+                        {% if request.status == 'pending_admin' %}
+                            <span class="badge bg-warning text-dark">Pending</span>
+                            <p class="text-muted mb-0">Your request is waiting for admin approval.</p>
+                        {% else %}
+                            <span class="badge bg-success">Completed</span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Owner Approval -->
+                <div class="d-flex align-items-start mb-4">
+                    <div class="status-icon {% if request.status in 'approved_by_admin granted_by_owner' %}bg-warning{% else %}bg-secondary{% endif %} text-white">2</div>
+                    <div class="ms-3">
+                        <h6 class="mb-1">Owner Approval</h6>
+                        {% if request.status == 'approved_by_admin' %}
+                            <span class="badge bg-warning text-dark">Waiting</span>
+                            <p class="text-muted mb-0">The pet owner will review your request.</p>
+                        {% elif request.status == 'granted_by_owner' %}
+                            <span class="badge bg-success">Approved</span>
+                        {% else %}
+                            <span class="badge bg-secondary">Locked</span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Adoption Completed -->
+                <div class="d-flex align-items-start">
+                    <div class="status-icon {% if request.status == 'granted_by_owner' %}bg-success{% else %}bg-secondary{% endif %} text-white">3</div>
+                    <div class="ms-3">
+                        <h6 class="mb-1">Adoption Completed</h6>
+                        {% if request.status == 'granted_by_owner' %}
+                            <span class="badge bg-success">Success</span>
+                            <p class="text-muted mb-0">Congratulations! The pet is now yours.</p>
+                        {% else %}
+                            <span class="badge bg-secondary">Pending</span>
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="my-4">
+
+            <!-- PET INFO -->
+            <div class="d-flex align-items-center">
+                {% if request.pet.photo %}
+                    <img src="{{ request.pet.photo.url }}" class="rounded-3 me-3" width="90" height="90" style="object-fit: cover;">
+                {% endif %}
+                <div>
+                    <h5 class="mb-1">{{ request.pet.name }}</h5>
+                    <p class="text-muted mb-0">Owner: {{ request.owner.username }}</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+```
+
+</div>
+
+<style>
+.status-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+</style>
+
+{% endblock %}

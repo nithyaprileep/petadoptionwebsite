@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="mb-4">💳 Checkout</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Food</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for item in cart.items.all %}
+        <tr>
+            <td>{{ item.food.name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>₹ {{ item.food.price }}</td>
+            <td>₹ {{ item.total_price }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<h4 class="text-end">Total Payable: ₹ {{ cart.total_price }}</h4>
+
+<form method="post">
+    {% csrf_token %}
+    <div class="text-end mt-3">
+        <button type="submit" class="btn btn-primary">
+            Confirm Order
+        </button>
+    </div>
+</form>
+
+{% endblock %}

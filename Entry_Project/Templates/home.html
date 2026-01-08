@@ -1,0 +1,84 @@
+{% extends "base1.html" %}
+{% load static %}
+
+
+
+{% block title %}About Us | PetNest{% endblock %}
+
+{% block content %}
+
+
+
+<div class="hero-section">
+    <div class="container text-center">
+        <h1 class="hero-title">
+            🐾 Find Your Forever Friend
+        </h1>
+        <p class="hero-subtitle">
+            Adopt a pet or help one find a loving home
+        </p>
+    </div>
+</div>
+
+<div class="row g-4 justify-content-center">
+
+    <!-- Adopt a Pet -->
+    <div class="col-md-4">
+        <div class="card shadow h-100">
+            <img src="{% static 'images/login2.png' %}" class="card-img-top fixed-img" alt="Adopt Pet">
+            <div class="card-body text-center p-4">
+    <h5 class="card-title fw-bold mb-2" style="color: rgb(255, 98, 0)">
+        🐶 Adopt a Pet
+    </h5>
+
+    <p class="card-text text-muted mb-3">
+        Find a loving companion and give them a forever home filled with care and joy.
+    </p>
+
+    <a href="{% url 'register' %}" class="btn btn-primary btn-lg w-100 adopt-btn">
+        ❤️ Adopt Now
+    </a>
+</div>
+
+        </div>
+    </div>
+<!-- Give Pet for Adoption -->
+<div class="col-md-4">
+    <div class="card shadow h-100 hover-card">
+        <img src="{% static 'images/login3.png' %}" class="card-img-top fixed-img" alt="Give Pet">
+        <div class="card-body text-center p-4">
+            <h5 class="card-title fw-bold mb-2" style="color: rgb(255, 98, 0);">
+                🐾 Give a Pet for Adoption
+            </h5>
+            <p class="card-text text-muted mb-3">
+                Help your pet find a caring and loving new family.
+            </p>
+            <a href="{% url 'owner_register' %}" class="btn btn-success btn-lg w-100 rounded-pill">
+                🤝 Give for Adoption
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Sign In -->
+<div class="col-md-4">
+    <div class="card shadow h-100 hover-card">
+        <img src="{% static 'images/login.png' %}" class="card-img-top fixed-img" alt="Sign In">
+        <div class="card-body text-center p-4">
+            <h5 class="card-title fw-bold mb-2" style="color: rgb(255, 98, 0);">
+                🔐 Already have an account?
+            </h5>
+            <p class="card-text text-muted mb-3">
+                Sign in to manage your adoptions and requests easily.
+            </p>
+            <a href="{% url 'login1' %}" class="btn btn-dark btn-lg w-100 rounded-pill">
+                👉 Sign In
+            </a>
+        </div>
+    </div>
+</div>
+
+
+    </div>
+</div>
+{% endblock %}

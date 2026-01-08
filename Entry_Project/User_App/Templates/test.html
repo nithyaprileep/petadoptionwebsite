@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}User Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4 fw-bold">🐾 Pets Available for Adoption</h2>
+
+    {% if pets %}
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for pet in pets %}
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                <!-- <img src="{{ pet.photo.url }}" class="card-img-top" style="height: 200px; object-fit: cover;" alt="{{ pet.name }}"> -->
+                <img src="{{ pet.photo.url }}" class="card-img-top" style="height: 300px; object-fit:contain;" alt="{{ pet.name }}">
+                  <img src="{{ pet.photo.url }}" class="card-img-top" alt="{{ pet.name }}" style="height:250px; object-fit:cover;">
+                 
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">{{ pet.name }}</h5>
+                    <p class="card-text">
+                        <strong>Category:</strong> {{ pet.category.name }}<br>
+                        {% if pet.breed %}<strong>Breed:</strong> {{ pet.breed.name }}<br>{% endif %}
+                        <strong>Age:</strong> {{ pet.age }}<br>
+                        <strong>Color:</strong> {{ pet.colour }}
+                    </p>
+                </div>
+                <div class="card-footer d-flex justify-content-between align-items-center">
+                    {% if pet.approval_status == 'approved' %}
+                        <span class="badge bg-success">Approved</span>
+                    {% elif pet.approval_status == 'pending' %}
+                        <span class="badge bg-warning text-dark">Pending</span>
+                    {% else %}
+                        <span class="badge bg-danger">Rejected</span>
+                    {% endif %}
+                    <a href="#" class="btn btn-primary btn-sm">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="text-center mt-5">
+        <img src="{% static 'img/no_pets.png' %}" class="mb-3" style="width: 200px;">
+        <h5 class="text-muted">No pets available for adoption at the moment.</h5>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <title>Home - Wisdom Pet Medicine</title>
+        <link rel="stylesheet" id="ample-style-css" href="http://wisdompets.com/wp-content/themes/ample/style.css?ver=4.8.3" type="text/css" media="all">
+    </head>
+    <body class="wide">
+        <div id="page" class="hfeed site">
+            <header>
+                <div class="header">
+                    <div class="main-head-wrap inner-wrap clearfix">
+                        <div id="header-logo-image">
+                            <a href="/">
+                                <img src="http://wisdompets.com/wp-content/uploads/2015/10/wisdom-pet-logo-single.png" alt="Wisdom Pet Medicine">
+                            </a>
+                        </div>
+                        <div id="header-text" class="">
+                            <h1 id="site-title">
+                                <a href="/" title="Wisdom Pet Medicine" rel="home">Wisdom Pet Medicine</a>
+                            </h1>
+                            <p>We treat your pets like we treat our own.</p>
+                        </div>
+                    </div>
+                    <img src="http://wisdompets.com/wp-content/uploads/2015/10/1500x400-header_114150655.jpg" alt="Wisdom Pet Medicine">
+                </div>
+            </header>
+            <div class="main-wrapper">
+                <div class="single-page clearfix">
+                    <div class="inner-wrap">
+                        <p>Wisdom Pet Medicine strives to blend the best in traditional and alternative medicine in the diagnosis and treatment of health conditions in companion animals, including dogs, cats, birds, reptiles, rodents, and fish. We apply the latest healthcare technology, along with the wisdom garnered in the centuries old tradition of veterinary medicine, to find the safest and most effective treatments and cures, while maintaining a caring relationship with our patients and their guardians.</p>
+                        <hr>
+                        <div>
+                        <!-- Insert content here-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer id="colophon">
+                <div class="inner-wrap">
+                    Wisdom Pet Medicine is a fictitious brand created by Lynda.com, solely for the purpose of training. All products and people associated with Wisdom Pet Medicine are also fictitious. Any resemblance to real brands, products, or people is purely coincidental. Please see your veterinarian for all matters related to your pet's health.
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>

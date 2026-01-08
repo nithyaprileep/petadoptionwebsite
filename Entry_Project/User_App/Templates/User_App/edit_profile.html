@@ -1,0 +1,80 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+                <!-- Header -->
+                <div class="bg-gradient p-4 text-white text-center">
+                    <h3 class="fw-bold mb-1">👤 Edit Profile</h3>
+                    <small class="text-light">Update your personal and contact details</small>
+                </div>
+
+                <div class="card-body p-4">
+
+                    <!-- Success Messages -->
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <form method="post">
+                        {% csrf_token %}
+
+                        <!-- User Info Section -->
+                        <h5 class="fw-semibold mb-3">User Information</h5>
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light">👤</span>
+                                    {{ user_form.first_name }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light">👤</span>
+                                    {{ user_form.last_name }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4 input-group">
+                            <span class="input-group-text bg-light">📧</span>
+                            {{ user_form.email }}
+                        </div>
+
+                        <hr class="my-4">
+
+                        <!-- Profile Info Section -->
+                        <h5 class="fw-semibold mb-3">Profile Information</h5>
+                        <div class="mb-3 input-group">
+                            <span class="input-group-text bg-light">📞</span>
+                            {{ profile_form.phone }}
+                        </div>
+                        <div class="mb-4 input-group">
+                            <span class="input-group-text bg-light">🏠</span>
+                            {{ profile_form.address }}
+                        </div>
+
+                        <!-- Save Button -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                💾 Save Changes
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

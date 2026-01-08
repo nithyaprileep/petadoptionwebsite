@@ -1,0 +1,42 @@
+{% extends "Admin_App/adminbase.html" %}
+{% block content %}
+
+<div class="container py-4">
+    <h4 class="mb-3" style="color: aqua;">🏠 Owner Requests</h4>
+
+    <table class="table table-bordered" style="color: aqua;">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Pet</th>
+                <th>Owner</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody style="color: aqua;">
+        {% for req in owners %}
+            <tr>
+                <td>{{ req.user.username }}</td>
+                <td>{{ req.pet.name }}</td>
+                <td>{{ req.owner.username }}</td>
+                <td>{{ req.get_status_display }}</td>
+                <td>
+                    <a href="{% url 'admin_approve_request' req.id %}" class="btn btn-success btn-sm">Approve</a>
+                    <a href="{% url 'admin_reject_request' req.id %}" class="btn btn-danger btn-sm">Reject</a>
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="5" class="text-center text-muted" style="color: aqua;">
+                    No owner requests
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

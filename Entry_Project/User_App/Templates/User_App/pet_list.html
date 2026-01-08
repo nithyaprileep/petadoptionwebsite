@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-5">
+
+    <!-- AVAILABLE PETS -->
+    <h2 class="mb-4 text-center text-success">
+        Available Pets for Adoption 🐾
+    </h2>
+
+    {% if available_pets %}
+        <div class="row">
+            {% for pet in available_pets %}
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm h-100">
+
+                        {% if pet.photo %}
+                            <img src="{{ pet.photo.url }}" class="card-img-top" style="height:200px; object-fit:cover;">
+                        {% else %}
+                            <img src="{% static 'images/no-pet.jpg' %}" class="card-img-top" style="height:200px; object-fit:cover;">
+                        {% endif %}
+
+                        <div class="card-body">
+                            <h5 class="card-title">{{ pet.name }}</h5>
+                            <p class="card-text">
+                                <strong>Category:</strong> {{ pet.category.name }}<br>
+                                <strong>Age:</strong> {{ pet.age }}<br>
+                                <strong>Color:</strong> {{ pet.colour }}
+                            </p>
+
+                            <a href="{% url 'user_pet_detail' pet.id %}" class="btn btn-primary w-100">
+                                View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center text-muted">No pets currently available.</p>
+    {% endif %}
+
+    <hr class="my-5">
+
+    <!-- ADOPTED PETS -->
+    <h2 class="mb-4 text-center text-secondary">
+        Already Adopted Pets🐶❤️
+    </h2>
+
+    {% if adopted_pets %}
+        <div class="row">
+            {% for pet in adopted_pets %}
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm h-100 opacity-75">
+
+                        {% if pet.photo %}
+                            <img src="{{ pet.photo.url }}" class="card-img-top" style="height:200px; object-fit:cover; filter: grayscale(40%);">
+                        {% else %}
+                            <img src="{% static 'images/no-pet.jpg' %}" class="card-img-top" style="height:200px; object-fit:cover;">
+                        {% endif %}
+
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{ pet.name }}</h5>
+                            <span class="badge bg-secondary mb-2">Adopted</span>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center text-muted">No adopted pets yet.</p>
+    {% endif %}
+
+{% endblock %}

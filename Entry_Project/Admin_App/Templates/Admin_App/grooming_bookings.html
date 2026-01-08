@@ -1,0 +1,84 @@
+{% extends "Admin_App/adminbase.html" %}
+{% block title %}Grooming Bookings | Admin{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <div class="p-4 rounded-4 shadow-sm mb-4"
+         style="background: linear-gradient(135deg, #ff9966, #ff5e62);
+                color: #fff;">
+        <h3 class="fw-bold mb-1">
+            🐶 Grooming Bookings
+        </h3>
+        <p class="mb-0 opacity-75">
+            View grooming consultation details submitted by users
+        </p>
+    </div>
+
+    <!-- Bookings Table -->
+    <div class="card shadow-sm rounded-4">
+        <div class="card-body">
+
+            <h5 class="card-title mb-3">All Grooming Requests</h5>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>#</th>
+                            <th>User</th>
+                            <th>Pet Name</th>
+                            <th>Service Date</th>
+                            <th>Services</th>
+                            <th>Total Price</th>
+                            <th>Booked On</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for booking in bookings %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>
+                                <strong>{{ booking.user.username }}</strong>
+                                <br>
+                                <small class="text-muted">{{ booking.user.email }}</small>
+                            </td>
+                            <td>{{ booking.pet_name }}</td>
+                            <td>
+                                <span class="badge bg-info">
+                                    {{ booking.service_date }}
+                                </span>
+                            </td>
+                            <td>
+                                {{ booking.services }}
+                            </td>
+                            <td>
+                                <span class="fw-bold text-success">
+                                    ₹ {{ booking.total_price }}
+                                </span>
+                            </td>
+                            <td>
+                                {{ booking.created_at|date:"d M Y, h:i A" }}
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="7" class="text-center text-muted py-4">
+                                No grooming bookings available
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

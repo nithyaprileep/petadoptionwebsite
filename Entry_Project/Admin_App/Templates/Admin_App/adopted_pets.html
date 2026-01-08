@@ -1,0 +1,85 @@
+{% extends "Admin_App/adminbase.html" %}
+{% block title %}Adopted Pets | Admin{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid py-4">
+
+    <!-- Header -->
+    <div class="p-4 rounded-4 shadow-sm mb-4"
+         style="background: linear-gradient(135deg, #56ab2f, #a8e063);
+                color: #fff;">
+        <h3 class="fw-bold mb-1">
+            🐾 Adopted Pets
+        </h3>
+        <p class="mb-0 opacity-75">
+            View all pets that have been adopted from PETNEST
+        </p>
+    </div>
+
+    <!-- Adopted Pets Table -->
+    <div class="card shadow-sm rounded-4">
+        <div class="card-body">
+
+            <h5 class="card-title mb-3">All Adopted Pets</h5>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>#</th>
+                            <th>Pet Name</th>
+                            <th>Breed</th>
+                            <th>Owner</th>
+                            <th>Adopted By</th>
+                            <th>Adoption Status</th>
+                            <th>Adopted On</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+{% for item in adopted_pets %}
+<tr>
+    <td>{{ forloop.counter }}</td>
+    <td>{{ item.pet.name }}</td>
+    <td>
+        {% if item.pet.breed %}
+            {{ item.pet.breed.name }}
+        {% else %}
+            N/A
+        {% endif %}
+    </td>
+    <td>{{ item.pet.owner.username }}</td>
+    <td>
+        {% if item.adopted_by %}
+            {{ item.adopted_by.username }}
+        {% else %}
+            N/A
+        {% endif %}
+    </td>
+    <td><span class="badge bg-success">Adopted</span></td>
+    <td>
+        {% if item.adopted_on %}
+            {{ item.adopted_on|date:"d M Y" }}
+        {% else %}
+            N/A
+        {% endif %}
+    </td>
+</tr>
+{% empty %}
+<tr>
+    <td colspan="7" class="text-center text-muted py-4">
+        No pets have been adopted yet
+    </td>
+</tr>
+{% endfor %}
+</tbody>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

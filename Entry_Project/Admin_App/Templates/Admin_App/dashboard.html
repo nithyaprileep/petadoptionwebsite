@@ -1,0 +1,134 @@
+{% extends "Admin_App/adminbase.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid py-4">
+
+    <!-- ===== HEADER ===== -->
+    <div class="p-4 rounded-4 shadow-sm mb-4 text-center"
+         style="background: linear-gradient(135deg, #ff6a00, #ffb347); color: #fff;">
+        <h2 class="fw-bold mb-1">
+            <i class="bi bi-speedometer2 me-2"></i> Admin Dashboard
+        </h2>
+        <p class="mb-0 opacity-75">
+            Manage pets, approvals & adoption requests
+        </p>
+    </div>
+
+    <!-- ===== SUMMARY CARDS ===== -->
+    <div class="row g-4 mb-4">
+
+        <div class="col-md-3">
+            <div class="card shadow-sm rounded-4 text-center p-3">
+                <i class="bi bi-people fs-1 text-primary"></i>
+                <h6 class="mt-2">Total Users</h6>
+                <h3 class="fw-bold">{{ users_count }}</h3>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm rounded-4 text-center p-3">
+                <i class="bi bi-house-heart fs-1 text-success"></i>
+                <h6 class="mt-2">Owners</h6>
+                <h3 class="fw-bold">{{ owners_count }}</h3>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm rounded-4 text-center p-3">
+                <i class="bi bi-heart-fill fs-1 text-danger"></i>
+                <h6 class="mt-2">Adopted Pets</h6>
+                <h3 class="fw-bold">{{ adopted_pets }}</h3>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow-sm rounded-4 text-center p-3">
+                <i class="bi bi-check-circle fs-1 text-info"></i>
+                <h6 class="mt-2">Available Pets</h6>
+                <h3 class="fw-bold">{{ available_pets }}</h3>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ===== ACTION CARDS ===== -->
+    <div class="row g-4">
+
+        <!-- Owner Added Pets -->
+        <div class="col-md-4">
+            <div class="card shadow-sm rounded-4 p-4 text-center h-100">
+                <i class="bi bi-shield-exclamation fs-1 text-warning"></i>
+                <h5 class="mt-3">Owner-added Pets</h5>
+                <p class="text-muted">
+                    Pending approval: <strong>{{ pending_owner_pets_count }}</strong>
+                </p>
+                <a href="{% url 'admin_owner_pets' %}" class="btn btn-warning w-100">
+                    Review Pets
+                </a>
+            </div>
+        </div>
+
+        <!-- Adoption Requests -->
+        <div class="col-md-4">
+            <div class="card shadow-sm rounded-4 p-4 text-center h-100">
+                <i class="bi bi-hourglass-split fs-1 text-primary"></i>
+                <h5 class="mt-3">Adoption Requests</h5>
+                <p class="text-muted">
+                    Pending: <strong>{{ pending_adoption_requests }}</strong>
+                </p>
+                <a href="{% url 'admin_adoption_requests' %}" class="btn btn-primary w-100">
+                    View Requests
+                </a>
+            </div>
+        </div>
+
+        <!-- Food / Products -->
+        <div class="col-md-4">
+            <div class="card shadow-sm rounded-4 p-4 text-center h-100">
+                <i class="bi bi-basket2 fs-1 text-success"></i>
+                <h5 class="mt-3">Pet Food</h5>
+                <p class="text-muted">Manage food products</p>
+                <a href="{% url 'admin_food_list' %}" class="btn btn-success w-100">
+                    Manage Food
+                </a>
+            </div>
+        </div>
+        <br>
+        <!-- Grooming Bookings -->
+        <div class="col-md-4">
+            <div class="card shadow-sm rounded-4 p-4 text-center h-100">
+                <i class="bi bi-scissors fs-1 text-info"></i>
+                <h5 class="mt-3">Grooming Bookings</h5>
+                <p class="text-muted">View grooming requests</p>
+                <a href="{% url 'admin_grooming_bookings' %}" class="btn btn-warning w-100">
+                    View Grooming
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm rounded-4 p-4 text-center h-100">
+                <i class="bi bi-scissors fs-1 text-info"></i>
+                <h5 class="mt-3">Adopted Pets</h5>
+                <p class="text-muted">View adopted pets</p>
+                <a href="{% url 'admin_adopted_pets' %}" class="btn btn-primary w-100">
+                    View Adopted Pets
+                </a>
+            </div>
+        </div>
+    
+
+    <div class="col-md-4">
+            <div class="card shadow-sm rounded-4 p-4 text-center h-100">
+                <i class="bi bi-scissors fs-1 text-info"></i>
+                <h5 class="mt-3">Food Orders</h5>
+                <p class="text-muted">View food orders</p>
+                <a href="{% url 'admin_orders' %}" class="btn btn-success w-100">
+                    View Food Orders
+                </a>
+            </div>
+        </div>
+</div>
+</div>
+{% endblock %}

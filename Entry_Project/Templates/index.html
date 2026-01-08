@@ -1,0 +1,196 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PETNEST | Pet Care & Adoption</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .brand-title {
+            font-size: 48px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: #ff7a18;
+            text-shadow: 0px 3px 8px rgba(0,0,0,0.15);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #ff9800, #ff5722);
+            color: white;
+            padding: 80px 0;
+        }
+
+        .hero .btn {
+            border-radius: 30px;
+            font-weight: 600;
+            margin: 8px;
+        }
+
+        .service-card {
+            border-radius: 18px;
+            transition: 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+
+        .why-box {
+            font-size: 18px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<nav class="py-4 text-center">
+    <h1 class="brand-title">PETNEST</h1>
+    <p class="text-muted">Where Pets Find Love & Care 🐾</p>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero text-center">
+    <div class="container">
+        <h1 class="fw-bold display-5">Welcome to PETNEST</h1>
+        <p class="lead mt-3">
+            Love • Care • Adoption • Grooming • Healthy Paw Foods
+        </p>
+
+        <a href="{% url 'pet_list' %}" class="btn btn-light btn-lg shadow">
+            🐶 View Pets
+        </a>
+        <a href="{% url 'services' %}" class="btn btn-light btn-lg shadow">
+            ✂️ Book Grooming
+        </a>
+        <a href="{% url 'pet_food_list' %}" class="btn btn-light btn-lg shadow">
+            🦴 Paw Foods
+        </a>
+        
+        <a href="{% url 'home' %}" class="btn btn-light btn-lg rounded-pill mt-3">
+            Get Started
+        </a>
+    </div>
+</section>
+
+<!-- CAROUSEL -->
+<div id="petCarousel" class="carousel slide mt-4" data-bs-ride="carousel">
+    <div class="carousel-inner">
+
+        <div class="carousel-item active">
+            <img src="{% static 'images/about_pets.png' %}"
+                 class="d-block w-100" style="height:450px; object-fit:contain;">
+        </div>
+
+        <div class="carousel-item">
+            <img src="{% static 'images/cat6.png' %}"
+                 class="d-block w-100" style="height:450px; object-fit:contain;">
+        </div>
+
+        <div class="carousel-item">
+            <img src="{% static 'images/bird.png' %}"
+                 class="d-block w-100" style="height:450px; object-fit:contain;">
+        </div>
+
+    </div>
+</div>
+
+<!-- ABOUT -->
+<section class="py-5 text-center">
+    <div class="container">
+        <h2 class="fw-bold mb-3">Who We Are</h2>
+        <p class="text-muted fs-5">
+            PETNEST is a trusted pet care platform helping pets find loving homes
+            while offering professional grooming and quality pet foods in Payyannur.
+        </p>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-5">Our Services</h2>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card service-card text-center p-4">
+                    <h4>🐶 Pet Adoption</h4>
+                    <p class="text-muted">
+                        Adopt dogs, cats, and other pets looking for forever homes.
+                    </p>
+                    <a href="{% url 'pet_list' %}" class="btn btn-outline-warning rounded-pill">
+                        View Pets
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card service-card text-center p-4">
+                    <h4>✂️ Grooming</h4>
+                    <p class="text-muted">
+                        Bath, haircut, nail trimming & full grooming packages.
+                    </p>
+                    <a href="{% url 'services' %}" class="btn btn-outline-warning rounded-pill">
+                        Book Grooming
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card service-card text-center p-4">
+                    <h4>🏥 Pet Care</h4>
+                    <p class="text-muted">
+                        Basic health guidance and care support for your pets.
+                    </p>
+                    <a href="{% url 'contact' %}" class="btn btn-outline-warning rounded-pill">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="py-5 text-center">
+    <div class="container">
+        <h2 class="fw-bold mb-4">Why Choose PETNEST?</h2>
+        <div class="row">
+            <div class="col-md-3 why-box">🛁 Professional Grooming</div>
+            <div class="col-md-3 why-box">🏠 Trusted Adoption</div>
+            <div class="col-md-3 why-box">🦴 Fresh Pet Foods</div>
+            <div class="col-md-3 why-box">📍 Payyannur Based</div>
+        </div>
+    </div>
+</section>
+
+<!-- CALL TO ACTION -->
+<section class="py-5 text-center text-white"
+         style="background: linear-gradient(90deg, #ff5722, #ff9800);">
+    <div class="container">
+        <h2 class="fw-bold">Give a Pet a Better Life 🐕</h2>
+        <p class="mt-2">Adopt • Groom • Care • Feed</p>
+
+        <a href="{% url 'home' %}" class="btn btn-light btn-lg rounded-pill mt-3">
+            Get Started
+        </a>
+        <a href="{% url 'login' %}" class="btn btn-light btn-lg rounded-pill mt-3">
+            Login
+        </a>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
