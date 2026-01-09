@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-qy(tu1@bs1*-4ikx2x*_j3xc4-le@+zae1=6*%xc5f#tg@%!9)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['nithya.pythonanywhere.com', '']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -150,17 +150,19 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# STATIC_URL = '/static/'
+
+# # WHERE collectstatic puts files (must be EMPTY and NOT reused)
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# # Where your source static files live
+# STATICFILES_DIRS = [
+#     BASE_DIR / 'static',
+# ]
+
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_URL = '/static/'
-
-# WHERE collectstatic puts files (must be EMPTY and NOT reused)
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-# Where your source static files live
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-]
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'dashboard_redirect'
 LOGOUT_REDIRECT_URL = 'index'
